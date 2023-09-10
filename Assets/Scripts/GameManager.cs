@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -22,13 +23,12 @@ namespace Assets.Scripts
         public void StartHost()
         {
             NetworkManager.Singleton.StartHost();
-            SceneManager.Instance.NextLevel();
+            NetworkManager.Singleton.SceneManager.LoadScene("Game", LoadSceneMode.Single);
         }
 
         public void StartClient()
         {
             NetworkManager.Singleton.StartClient();
-            SceneManager.Instance.NextLevel();
         }
 
         // Start is called before the first frame update
@@ -36,8 +36,20 @@ namespace Assets.Scripts
         {
             NetworkManager.Singleton.OnClientConnectedCallback += (clientId) =>
             {
-                Debug.Log("Connected" + clientId);
+                Debug.Log("Connected:" + clientId);
+
+                if (NetworkManager.Singleton.IsHost && NetworkManager.Singleton.ConnectedClients.Count == 2)
+                { 
+                    SpawnBoard();
+                }
             };
+        }
+
+        [SerializeField] private GameObject boardPrefab;
+        private void SpawnBoard()
+        {
+            var newBoard = Instantiate(boardPrefab);
+            newBoard.GetComponent<NetworkObject>().Spawn();
         }
 
         // Update is called once per frame
