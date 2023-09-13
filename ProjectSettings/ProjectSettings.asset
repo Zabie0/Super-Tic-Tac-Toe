@@ -789,11 +789,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 95819cc9-aefe-4132-9e1f-6fb80646b8fe
+  cloudProjectId: 8b40f2e6-4e5b-44ef-bf90-7d6a4da5c2aa
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Super Tic Tac Toe
-  organizationId: okorniichuk03
+  organizationId: zabie0
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
